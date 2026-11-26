@@ -1,4 +1,3 @@
-#pragma once
 #include "array.h"
 #include <iostream>
 #include <iomanip>
@@ -116,7 +115,6 @@ void xulyp25() {
 }
 void xulyp26() {
 	long long  n, m, a[10009], b[10009];
-	long long c[10009];
 	cin >> n >> m;
 	for (int i = 1;i <= n;i++) cin >> a[i];
 	for (int i = 1;i <= m;i++) cin >> b[i];

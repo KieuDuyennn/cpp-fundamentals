@@ -65,17 +65,18 @@ void RemoveMultipleSpace(char a[])
 	}
 }
 
+// Copies n characters starting at index into b.
 void SubFirstnChar(char a[],int n,int index,char b[]) {
-	int l = strlen(a);
 	for (int i=index;i < index+n;i++)
-	 b[i-index]=a[i]; 
-	 b[n]=0; 
+		b[i-index]=a[i];
+	b[n]=0;
 }
 
+// Copies the n characters that end just before index into b.
 void SubLastnChar(char a[],int n,int index,char b[]) {
 	for (int i=index-n;i<index;i++)
-	  b[i-index+n]=a[i]; 
-	  b[n]=0; 
+		b[i-index+n]=a[i];
+	b[n]=0;
 }
 
 int main()
