@@ -1,20 +1,22 @@
-#include "function.h"
+#include "Function.h"
+#include <iostream>
 
-#define MAX_STUDENTS 1000
+const int MAX_STUDENTS = 1000;
 
 int main() {
     Student students[MAX_STUDENTS];
     int size = 0;
 
     std::ifstream input("input.txt");
-    loadStudents(input, students, size);
-    input.close();
+    if (!input) {
+        std::cerr << "Cannot open input.txt\n";
+        return 1;
+    }
+    loadStudents(input, students, size, MAX_STUDENTS);
 
     sortStudents(students, size);
 
     std::ofstream output("honors.txt");
     saveHonors(output, students, size);
-    output.close();
-
     return 0;
 }
