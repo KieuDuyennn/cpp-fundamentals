@@ -19,7 +19,7 @@ int main() {
         cout << "0. Exit" << endl;
 
         cout << "Your choice: ";
-        cin >> choice;
+        if (!(cin >> choice)) break;
 
         int  n, a[10005];
         if (choice == 1) {
