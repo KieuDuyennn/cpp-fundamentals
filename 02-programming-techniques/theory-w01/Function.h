@@ -1,7 +1,7 @@
-#include "Function.cpp"
-#include <iostream>
-#include <fstream>
-#include <cmath>
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
+#include <string>
 
 struct Point {
     float x;
@@ -26,5 +26,7 @@ float calcFenceLength(const Plantation& p);
 float distance(const Point& p, const Point& q);
 float calculateTotalLength(const Plantation& p);
 Point findPump(const Plantation& p);
-void readData (Plantation &p, const string &filename);
- void writeData (const Plantation &p,const string &filename);
+void readData (Plantation &p, const std::string &filename);
+ void writeData (const Plantation &p,const std::string &filename);
+
+#endif

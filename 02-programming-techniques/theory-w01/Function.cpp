@@ -1,8 +1,9 @@
+#include "Function.h"
 #include <iostream>
 #include <fstream>
 #include <cmath>
+using namespace std;
 
-// Declare struct
 
 // Count trees of a specific type.
 int countTrees(const Plantation& p, int type) {
@@ -25,24 +26,22 @@ int countTeaTrees(const Plantation& p) {
     return countTrees(p, 1);
 }
 
-// Find upper left point.
+// Find the upper-left corner of the bounding box (smallest x, largest y).
 Point findUpperLeft(const Plantation& p) {
     Point upperLeft = p.trees[0].location;
     for(int i = 1; i < p.count; i++) {
-        if(p.trees[i].location.x < upperLeft.x || p.trees[i].location.y > upperLeft.y) {
-            upperLeft = p.trees[i].location;
-        }
+        if(p.trees[i].location.x < upperLeft.x) upperLeft.x = p.trees[i].location.x;
+        if(p.trees[i].location.y > upperLeft.y) upperLeft.y = p.trees[i].location.y;
     }
     return upperLeft;
 }
 
-// Find lower right point.
+// Find the lower-right corner of the bounding box (largest x, smallest y).
 Point findLowerRight(const Plantation& p) {
     Point lowerRight = p.trees[0].location;
     for(int i = 1; i < p.count; i++) {
-        if(p.trees[i].location.x > lowerRight.x || p.trees[i].location.y < lowerRight.y) {
-            lowerRight = p.trees[i].location;
-        }
+        if(p.trees[i].location.x > lowerRight.x) lowerRight.x = p.trees[i].location.x;
+        if(p.trees[i].location.y < lowerRight.y) lowerRight.y = p.trees[i].location.y;
     }
     return lowerRight;
 }
@@ -82,26 +81,26 @@ Point findPump(const Plantation& p) {
 }
 
 
-void readData (Plantation &p, const string &filename)
+// File format: the number of trees, then one "x y type" line per tree.
+void readData(Plantation &p, const string &filename)
 {
-	ifstream ifs (filename);
-	ifs.open();
-	for (int i=0;i<p.N;++i)
-	{
-		ifs>>p.trees[i].location.x>>p.trees[i].location.y >> p.trees[i].type;
-	}
-	ifs.close();
- } 
- void writeData (const Plantation &p,const string &filename)
- {
- 	ofstream ofs;
- 	ofs.open();
- 	int s0 = countCoffeeTrees(p);
- 	int s1 = countTeaTrees(p);
- 	ofs << s0 << " "<< s1<<endl;
- 	float Cmin= calcFenceLength (p);
- 	ofs<<Cmin<<endl;
- 	float Dmin = calculateTotalLength (o);
- 	ofs<<Dmin<<endl;
- 	ofs.close ();
- }
+    p.count = 0;
+    ifstream ifs(filename);
+    int n = 0;
+    if (!(ifs >> n)) return;
+    if (n > 100) n = 100;
+    for (int i = 0; i < n && ifs >> p.trees[i].location.x >> p.trees[i].location.y >> p.trees[i].type; ++i)
+        p.count++;
+}
+
+void writeData(const Plantation &p, const string &filename)
+{
+    ofstream ofs(filename);
+    if (p.count == 0) {
+        ofs << "0 0" << endl;
+        return;
+    }
+    ofs << countCoffeeTrees(p) << " " << countTeaTrees(p) << endl;
+    ofs << calcFenceLength(p) << endl;
+    ofs << calculateTotalLength(p) << endl;
+}

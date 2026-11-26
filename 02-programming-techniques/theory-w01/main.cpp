@@ -1,4 +1,4 @@
-# include "function.h"
+#include "Function.h"
 using namespace std;
 int main(){
 	Plantation p;
