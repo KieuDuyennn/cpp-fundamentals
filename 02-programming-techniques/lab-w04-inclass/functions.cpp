@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "functions.h"> 
+#include "functions.h" 
 
 void saveArrayToFile(int arr[], int n, const char* filename) {
     FILE* file = fopen(filename, "wb");
