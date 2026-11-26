@@ -1,46 +1,38 @@
+// Lê Phạm Kiều Duyên - 23CLC04
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
+// Sum of digits. 12345 -> 15, 23 -> 5, 123 -> 6
 int tongcs(int n);
-// Lê Ph?m Ki?u Duyên
-// 23CLC04
-// Test case 1
-// Input:12345
-// Output:15
-// Test case 2
-// Input:23
-// Output:5
-// Test case 3
-// Input:123
-// Output:6
+
+// Product of odd digits. 12345 -> 15, 23 -> 3, 34567 -> 105
 int tich(int n);
-// Lê Ph?m Ki?u Duyên
-// 23CLC04
-// Test case 1
-// Input:12345
-// Output:15
-// Test case 2
-// Input:23
-// Output:3
-// Test case 3
-// Input:34567
-// Output:105
 
+// Smallest digit. 12345 -> 1, 230147 -> 0, 4598621 -> 1
 int mi(int n);
-// Lê Ph?m Ki?u Duyên
-// 23CLC04
-// Test case 1
-// Input:12345
-// Output:1
-// Test case 2
-// Input:230147
-// Output:0
-// Test case 3
-// Input:4598621
-// Output:1
-int checkchan(int n)
-int ucln(int a,int b)
-int Pow(double a,int b)
-int gt(int k)
-int k3(int n)
-void addDay(int &day, int &month, int &year, int n)
-int checknt(int n)
-int giaiPT(float a, float b, float c,float &x1, float &x2)
 
+// 1 if every digit is odd, otherwise 0
+int checkchan(int n);
+
+// Greatest common divisor
+int ucln(int a, int b);
+
+// a raised to the power b (b >= 0)
+double Pow(double a, int b);
+
+// k!
+long long gt(int k);
+
+// 1 if n is a power of 3, otherwise 0
+int k3(int n);
+
+// Moves the date forward by n days
+void addDay(int& day, int& month, int& year, int n);
+
+// 1 if n is prime, otherwise 0
+int checknt(int n);
+
+// Solves ax^2 + bx + c = 0 (a != 0). Returns the number of real roots.
+int giaiPT(float a, float b, float c, float& x1, float& x2);
+
+#endif
