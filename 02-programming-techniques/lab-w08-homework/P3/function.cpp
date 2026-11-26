@@ -27,7 +27,8 @@ void inputFromFile(Node* &pHead)
         return;
     }
     int tmp;
-    Node* cur = pHead;
+    Node* tail = pHead;
+    while (tail != nullptr && tail->pNext != nullptr) tail = tail->pNext;
     while (fi >> tmp)
     {
         if(tmp == 0) break;
@@ -35,12 +36,8 @@ void inputFromFile(Node* &pHead)
         newNode -> data = tmp;
         newNode -> pNext = nullptr;
         if (pHead == nullptr) pHead = newNode;
-        else
-        {
-            Node* cur = pHead;
-            while (cur -> pNext != nullptr) cur = cur -> pNext;
-            cur -> pNext = newNode;
-        }
+        else tail->pNext = newNode;
+        tail = newNode;
     }
     fi.close();
 }

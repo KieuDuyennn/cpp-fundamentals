@@ -24,7 +24,8 @@ void insertToSortedList(Node* &pHead, int x)
 void inputList(Node *&pHead)
 {
     int tmp;
-    Node* cur = pHead;
+    Node* tail = pHead;
+    while (tail != nullptr && tail->pNext != nullptr) tail = tail->pNext;
     while (std::cin >> tmp)
     {
         if(tmp == 0) break;
@@ -32,12 +33,8 @@ void inputList(Node *&pHead)
         newNode -> data = tmp;
         newNode -> pNext = nullptr;
         if (pHead == nullptr) pHead = newNode;
-        else
-        {
-            Node* cur = pHead;
-            while (cur -> pNext != nullptr) cur = cur -> pNext;
-            cur -> pNext = newNode;
-        }
+        else tail->pNext = newNode;
+        tail = newNode;
     }
 }
 
