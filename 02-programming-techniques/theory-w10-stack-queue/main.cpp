@@ -45,8 +45,9 @@ SNode* popStu(Stack &s) {
 bool isEmpty(const Stack &s) {
     return s.top == nullptr;
 }
-void remove_N_Students(int &N, Stack s){
-    for (int i=1;i<=N;i++) popStu(s);
+// Pops up to N students. The stack is passed by reference so the caller sees the change.
+void remove_N_Students(int N, Stack &s){
+    for (int i = 1; i <= N && !isEmpty(s); i++) delete popStu(s);
 }
 void displayStudents(const Stack &s) {
     if (isEmpty(s)) {
@@ -92,7 +93,7 @@ int searchPoints(const Stack &s, const std::string& name) {
     std::cerr << "Student '" << name << "' not found.\n";
     return -1;
 }
- void clearStack( Stack &s){
+void clearStack(Stack &s){
     while (s.top != NULL){
         SNode * tmp=s.top;
         s.top=s.top->next;
@@ -136,5 +137,6 @@ int main() {
         std::cout << "Points of student '" << searchName << "': " << searchResult << std::endl;
     }
 
+    clearStack(studentStack);
     return 0;
 }
