@@ -98,7 +98,6 @@ void FindYesterday(Date &date)
 
 void addDay(Date &date, int &n)
 {
-	int a = n;
 	int daysInMonth;
 	while (n > 0)
 	{
@@ -163,9 +162,9 @@ void input_a_student ( Student &s){
 	cin>>s.id;
 	cin>>s.gpa; 
     cin.ignore();
-    cin.get(s.fullname,105); 
+    cin.get(s.fullname, sizeof(s.fullname)); 
 	cin.ignore();
-	cin.get(s.address,105); 
+	cin.get(s.address, sizeof(s.address)); 
 	Input(s.date_of_birth); 
 }
 
@@ -177,54 +176,38 @@ void output_a_student(Student s){
 	Output(s.date_of_birth) ;
 } 
 
-int CmpId(Student &s1,Student &s2) 
+// Comparators return -1, 0 or 1, like strcmp.
+int CmpId(Student &s1,Student &s2)
 {
 	if (s1.id < s2.id) return -1;
-	else return 1; 
+	if (s1.id > s2.id) return 1;
+	return 0;
 }
 
 int CmpGPA(Student &s1, Student &s2)
 {
-	if (s1.gpa<s2.gpa) return -1;
-	if (s1.gpa>s2.gpa) return 1;
-	if (s1.gpa == s1.gpa) return CmpId(s1,s2);
-	 
- } 
- 
+	if (s1.gpa < s2.gpa) return -1;
+	if (s1.gpa > s2.gpa) return 1;
+	return CmpId(s1, s2);
+}
+
 int CmpName(Student &s1, Student &s2)
 {
-	int n = 0;
-    short flag = 1;
-   while (s1.fullname[n] != '\0') {
-      if(s1.fullname[n] != s2.fullname[n]) {
-         flag = 0;
-         break;
-      }
-      n++;
-   }
-     
-   if(flag == 1) return 1;
-   else return -1;
-  
+	int r = strcmp(s1.fullname, s2.fullname);
+	if (r < 0) return -1;
+	if (r > 0) return 1;
+	return CmpId(s1, s2);
 }
 
 int CmpDob(Student &s1,Student &s2)
 {
-	if (s1.date_of_birth.year > s2.date_of_birth.year ) return 1;
-	if (s1.date_of_birth.year < s2.date_of_birth.year ) return -1;
-	if (s1.date_of_birth.year == s2.date_of_birth.year ) 
-	   {
-	   	if (s1.date_of_birth.month > s2.date_of_birth.month ) return 1;
-	   	if (s1.date_of_birth.month < s2.date_of_birth.month ) return -1;
-	   	if (s1.date_of_birth.month == s2.date_of_birth.month ) 
-	   	    {
-	   	    	if (s1.date_of_birth.day > s2.date_of_birth.day ) return 1;
-	   	    	if (s1.date_of_birth.day < s2.date_of_birth.day ) return -1;
-			   }
-	else return CmpId(s1,s2); 
-	   }
- } 
- 
+	const Date &d1 = s1.date_of_birth, &d2 = s2.date_of_birth;
+	if (d1.year != d2.year) return d1.year > d2.year ? 1 : -1;
+	if (d1.month != d2.month) return d1.month > d2.month ? 1 : -1;
+	if (d1.day != d2.day) return d1.day > d2.day ? 1 : -1;
+	return CmpId(s1, s2);
+}
+
  struct Course {
  	int id;
 	char name[105];
@@ -237,7 +220,6 @@ int main()
 {
 	Date date;
 	Student s; 
-	Course c; 
 	int t;
 	while(1)
 	{
