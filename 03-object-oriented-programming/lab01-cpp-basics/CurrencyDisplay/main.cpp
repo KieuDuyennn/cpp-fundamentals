@@ -1,3 +1,4 @@
+#include <limits>
 #include "main.h"
 
 int main() {
@@ -5,19 +6,19 @@ int main() {
     double exchangeRate;
 
     cout << "Enter money in VND (between 1,000,000 and 10,000,000): ";
-    cin >> moneyVND;
-
-    while (moneyVND < 1000000 || moneyVND > 10000000) {
+    while (!(cin >> moneyVND) || moneyVND < 1000000 || moneyVND > 10000000) {
+        if (cin.eof()) return 1;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid amount of money. Enter money in the range [1,000,000 - 10,000,000]: ";
-        cin >> moneyVND;
     }
 
     cout << "Enter the exchange rate for 1 USD: ";
-    cin >> exchangeRate;
-
-    while (exchangeRate <= 0) {
+    while (!(cin >> exchangeRate) || exchangeRate <= 0) {
+        if (cin.eof()) return 1;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid exchange rate. Enter a positive value: ";
-        cin >> exchangeRate;
     }
 
     double moneyUSD = moneyVND / exchangeRate;

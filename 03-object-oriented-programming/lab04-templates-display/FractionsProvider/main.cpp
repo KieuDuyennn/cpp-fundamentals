@@ -15,6 +15,10 @@ int main() {
 
     for (int i = 1; i <= n; ++i) {
         Result<Fraction> result = provider.next();
+        if (!std::cin) {
+            std::cout << "\nInput ended before all fractions were entered.\n";
+            break;
+        }
         if (!result.success) {
             std::cout << "Error: " << result.message << ". Please enter again.\n";
             --i;

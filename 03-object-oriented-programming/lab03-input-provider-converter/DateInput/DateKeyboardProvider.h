@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <regex>
+#include <stdexcept>
 #include "Date.h"
 
 class DateKeyboardProvider {
@@ -14,7 +15,9 @@ public:
 
         while (true) {
             std::cout << prompt << std::endl;
-            std::cin >> input;
+            if (!(std::cin >> input)) {
+                throw std::runtime_error("Input ended before a valid date was entered");
+            }
 
             if (std::regex_match(input, matches, date_pattern)) {
                 int day = std::stoi(matches[1]);

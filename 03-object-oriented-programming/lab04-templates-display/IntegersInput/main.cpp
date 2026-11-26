@@ -27,6 +27,10 @@ int main() {
     for (int i = 1; i <= n; ++i) {
         std::cout << "Integer " << i << ": ";
         Result<int> result = inputProvider.next(20, 100);  // Request integer input in the range [20, 100]
+        if (!std::cin) {
+            std::cout << "\nInput ended before all integers were entered." << std::endl;
+            break;
+        }
 
         if (!result.success) {
             std::cout << "Error: " << result.message << std::endl;
