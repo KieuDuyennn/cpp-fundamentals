@@ -1,3 +1,4 @@
+#include <cstring>
 bool isPalindrome(char* cstr)
 {
     char* front = cstr;
