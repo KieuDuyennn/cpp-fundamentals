@@ -45,12 +45,13 @@ void traceTopDown(int M, int N, int col) {
 		cout << "Lau " << row + 1 << " Phong " << col + 1 ;
 		if (row == M - 1) break;
 		else cout << " -> ";
+		// Follow the move that produced dp[row][col]: straight down, down-left or down-right.
 		if (dp[row][col] == dp[row + 1][col] + a[row][col]) {
 		}
 		else if (col > 0 && dp[row][col] == dp[row + 1][col - 1] + a[row][col]) {
 			--col;
 		}
-		else {
+		else if (col + 1 < N) {
 			++col;
 		}
 		++row;
@@ -66,7 +67,7 @@ void traceBottomUp(int M, int N, int row, int col) {
 		traceBottomUp(M, N, row - 1, col);
 	else if (col > 0 && dp[row][col] == dp[row - 1][col - 1] + a[row][col])
 		traceBottomUp(M, N, row - 1, col - 1);
-	else
+	else if (col + 1 < N)
 		traceBottomUp(M, N, row - 1, col + 1);
 	cout << " -> ";
 	cout << " Lau " << row + 1 << " Phong " << col + 1 ;
