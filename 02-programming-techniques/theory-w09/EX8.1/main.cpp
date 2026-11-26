@@ -196,7 +196,7 @@ int main() {
     while (true) {
         display_menu();
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        if (!(std::cin >> choice)) break;
         switch (choice) {
             case 1:
                 std::cout << "Enter value to add to head: ";
@@ -251,11 +251,13 @@ int main() {
                 break;
             case 11:
                 std::cout << "Exiting program." << std::endl;
+                remove_all(my_list);
                 return 0;
             default:
                 std::cout << "Invalid choice! Please enter a valid option." << std::endl;
         }
     }
+    remove_all(my_list);
     return 0;
 }
 

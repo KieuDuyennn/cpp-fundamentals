@@ -96,7 +96,7 @@ int main() {
     do {
         display_menu();
         std::cout << "Nhập lựa chọn của bạn: ";
-        std::cin >> choice;
+        if (!(std::cin >> choice)) break;
 
         switch (choice) {
             case 1:
@@ -128,5 +128,6 @@ int main() {
         }
     } while (choice != 6);
 
+    delete_list(my_list);
     return 0;
 }

@@ -56,7 +56,7 @@ int main() {
     int choice;
     do {
         printMenu();
-        std::cin >> choice;
+        if (!(std::cin >> choice)) break;
         switch (choice) {
         case 1: {
             int n;
