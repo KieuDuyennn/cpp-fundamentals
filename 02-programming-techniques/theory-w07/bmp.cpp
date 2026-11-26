@@ -129,9 +129,9 @@ void positionCalculate(BMPFile& bmp, int h, int w, int* subHeight, int* subWidth
 void generateFileName(char fileName[], char subName[], int i, int j) {
 	strcpy(subName, fileName);
 	// Remove file extension
-	for (int i = (int)strlen(subName) - 1; i >= 0; --i)
-		if (subName[i] == '.') {
-			subName[i] = '\0';
+	for (int k = (int)strlen(subName) - 1; k >= 0; --k)
+		if (subName[k] == '.') {
+			subName[k] = '\0';
 			break;
 	}
 
