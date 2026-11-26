@@ -1,0 +1,12 @@
+# Build output
+*.exe
+*.o
+*.out
+a.out
+
+# Files the exercises write when they run
+output.txt
+honors.txt
+FARM.out
+log-*.txt
+*_[0-9]_[0-9].bmp
