@@ -8,16 +8,7 @@
 #include <algorithm>
 #include <regex>
 
-
 #include "IConverter.h"
-
-// class IntToCurrencyConverter : public IConverter {
-// public:
-//     std::string convert(Object* object) override;
-//     std::string toString() override;
-// };
-
-
 
 class IntToCurrencyConverter : public IConverter {
 public:
