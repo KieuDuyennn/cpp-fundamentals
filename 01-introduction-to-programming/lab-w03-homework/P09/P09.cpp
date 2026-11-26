@@ -29,8 +29,8 @@ int main(){
 		   }
     if (a==0)
 	      {
-	      	if (b==0 &c==0) cout<<"Phuong trinh vo so nghiem";
-			if (b==0 &c!=0) cout<<"Phuong trinh vo nghiem";
+	      	if (b==0 && c==0) cout<<"Phuong trinh vo so nghiem";
+			if (b==0 && c!=0) cout<<"Phuong trinh vo nghiem";
 			if (b !=0) cout<<setprecision(2)<<fixed<< -c/b; 
 		  }
 } 
