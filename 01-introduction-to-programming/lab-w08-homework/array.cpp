@@ -1,4 +1,3 @@
-#pragma once
 #include "array.h"
 #include <iostream>
 #include <iomanip>
@@ -83,21 +82,22 @@ void p398() {
 	for (int i = 0;i < m;i++)
 		for (int j = 0;j < n;j++)
 			cin >> a[i][j];
-	int i, j;
-	int tam = a[0][0];
-	for (i = 0, j = i; i < n - 1; i++)
+	// Rotate the border one step counterclockwise.
+	int i = 0, j = 0;
+	double tam = a[0][0];
+	for (; i < m - 1; i++)
 	{
 		a[i][j] = a[i + 1][j];
 	}
-	for (j, i; j < m - 1; j++)
+	for (; j < n - 1; j++)
 	{
 		a[i][j] = a[i][j + 1];
 	}
-	for (i, j; i > 0; i--)
+	for (; i > 0; i--)
 	{
 		a[i][j] = a[i - 1][j];
 	}
-	for (i, j; j > 1; j--)
+	for (; j > 1; j--)
 	{
 		a[i][j] = a[i][j - 1];
 	}
@@ -151,15 +151,17 @@ void p423() {
 	}
 }
 
+// 1 if the matrix is symmetric across the main diagonal, otherwise 0
 int kiemtradoixung(int a[100][100], int n)
 {
-	int k, j;
-	for (k = 0; k < n; k++)
-		for (j = 0; j < n && a[k][j] == a[j][k]; j++);
-	return k == j;
+	for (int k = 0; k < n; k++)
+		for (int j = k + 1; j < n; j++)
+			if (a[k][j] != a[j][k]) return 0;
+	return 1;
 }
 void p457() {
-	int a[100][100];int n, k;
+	int a[100][100];
+	int n;
 	cin >> n;
 	for (int i = 0;i < n;i++)
 		for (int j = 0;j < n;j++)
@@ -195,7 +197,8 @@ int CheoPhu(int a[100][100], int n) {
 }
 
 void p458() {
-	int a[100][100];int n, k;
+	int a[100][100];
+	int n;
 	cin >> n;
 	for (int i = 0;i < n;i++)
 		for (int j = 0;j < n;j++)
