@@ -25,7 +25,9 @@ struct Triangle {
 
 void InputTriangle(Triangle& triangle);
 double TrianglePerimeter(Triangle triangle);
-void InputArrPoint(Point pt[], int Size);
+const int MAX_POINTS = 100;
+
+void InputArrPoint(Point pt[], int& Size);
 int CountPositiveCoordinatesPoint(Point pt[], int Size);
 Point FindLargestx_componentValuePoint(Point pt[], int Size);
 Point FindSmallestx_componentValuePoint(Point pt[], int Size);

@@ -97,17 +97,17 @@ int main()
 		}
 		if (t == 11)
 		{
-			Point pt[];
+			Point pt[MAX_POINTS];
 			int Size;
-			InputArrPoint(pt[], Size);
+			InputArrPoint(pt, Size);
 		}
 
 		if (t == 12)
 		{
-			Point pt[];
+			Point pt[MAX_POINTS];
 			int Size;
-			InputArrPoint(pt[], Size);
-			int k= CountPositiveCoordinatesPoint(pt[], Size);
+			InputArrPoint(pt, Size);
+			int k = CountPositiveCoordinatesPoint(pt, Size);
 			cout << k;
 
 		}

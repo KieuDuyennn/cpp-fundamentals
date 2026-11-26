@@ -81,16 +81,19 @@ double TrianglePerimeter(Triangle triangle)
 }
 
 
-void InputArrPoint(Point pt[], int Size)
+void InputArrPoint(Point pt[], int& Size)
 {
-	for (int i = 0; i < Size; i++) InputPoint(Point pt[i]);
+	std::cin >> Size;
+	if (Size < 0) Size = 0;
+	if (Size > MAX_POINTS) Size = MAX_POINTS;
+	for (int i = 0; i < Size; i++) InputPoint(pt[i]);
 }
 
 int CountPositiveCoordinatesPoint(Point pt[], int Size)
 {
 	int Count = 0;
 	for (int i = 0; i < Size; i++)
-		if (pt[i].x > 0 && pt[i].y > 0) count++;
+		if (pt[i].x > 0 && pt[i].y > 0) Count++;
 	return Count;
 }
 
